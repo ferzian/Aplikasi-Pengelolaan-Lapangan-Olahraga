@@ -19,36 +19,26 @@ class LapanganOutdoor extends Lapangan {
 
   @override
   void tampilkanInfo() {
-    print("Jenis Lapangan: $jenisLapangan");
-    print("Harga Sewa per Jam: Rp $hargaSewa");
-    print('');
+    print("Jenis : $jenisLapangan");
+    print("Harga /Jam : $hargaSewa");
   }
 }
 
-// Kelas Lapangan Tennis
-class LapanganTennis extends Lapangan {
-  LapanganTennis(String jenisLapangan, int hargaSewa)
+// Kelas Lapangan Indoor
+class LapanganIndoor extends Lapangan {
+  LapanganIndoor(String jenisLapangan, int hargaSewa)
       : super(jenisLapangan, hargaSewa);
 
   @override
   void tampilkanInfo() {
-    print("Jenis Lapangan: $jenisLapangan");
-    print("Harga Sewa per Jam: Rp $hargaSewa");
-    print('='*40);
-    print('');
+    print("Jenis : $jenisLapangan");
+    print("Harga /Jam: Rp $hargaSewa");
   }
 }
 
-// untuk clear screen
-// void clearConsole() {
-//   if (Platform.isWindows) {
-//     // Untuk Windows
-//     Process.run('cls', []);
-//   } else {
-//     // Untuk sistem operasi lain
-//     print('\x1B[2J\x1B[0;0H');
-//   }
-// }
+void clearScreen() {
+  print('\x1B[2J\x1B[H'); // Ini akan menciptakan efek membersihkan layar
+}
 
 
 // Kelas Sewa yang mengimplementasikan inheritance
@@ -92,11 +82,15 @@ class Pelanggan {
 
   // Method untuk menampilkan informasi pelanggan dan total biaya
   void tampilkanInfo() {
-    print("Nama Pelanggan: $nama");
+    print('='*30);
+    print(' Data Penyewa :                     ');
+    print('='*30); 
+    print("Nama Pelanggan: $nama ");
     print("No. Telepon: $noTelp");
     sewa.lapangan.tampilkanInfo();
-    print("Jam Sewa: ${sewa.jamSewa} jam");
+    print("Sewa: ${sewa.jamSewa} jam");
     print("Total Biaya Sewa: ${sewa.hitungBiayaSewa()}");
+    print('='*30);
   }
 }
 
@@ -107,13 +101,15 @@ void main() {
   var operator = Operator();
 
   // Menambahkan lapangan
-  operator.tambahLapangan(LapanganOutdoor("Lapangan Futsal", 100000));
-  operator.tambahLapangan(LapanganTennis("Lapangan Tennis", 150000));
+  operator.tambahLapangan(LapanganOutdoor("Lapangan Outdoor", 100000));
+  operator.tambahLapangan(LapanganIndoor("Lapangan Indoor", 150000));
 
   // Menampilkan daftar lapangan
   operator.tampilkanDaftarLapangan();
+    print('='*40);
 
   // Meminta input dari pengguna
+  print('');
   stdout.write("Masukkan nama Anda: ");
   var namaPelanggan = stdin.readLineSync()!;
   stdout.write("Masukkan no. telepon Anda: ");
@@ -122,7 +118,7 @@ void main() {
   var nomorLapangan = int.parse(stdin.readLineSync()!);
   stdout.write("Berapa jam Anda ingin menyewa lapangan: ");
   var jamSewa = int.parse(stdin.readLineSync()!);
-  // clearConsole();
+  clearScreen();
 
 
   // Membuat objek Pelanggan dan Sewa
@@ -132,7 +128,7 @@ void main() {
 
   // Menampilkan informasi pelanggan dan total biaya
   pelanggan.tampilkanInfo();
+  print('');
 }
-
 
 
