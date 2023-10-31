@@ -78,6 +78,7 @@ void HapusPelanggan(List<Pelanggan> pelangganList, int index) {
     pelangganList.removeAt(index);
   } else {
     print("Indeks tidak valid.");
+  
   }
 }
 
@@ -134,6 +135,7 @@ void main() {
         LihatDaftarPelanggan(pelangganList);
         stdout.write("Masukkan nomor pelanggan yang akan dihapus: ");
         var index = int.parse(stdin.readLineSync()!);
+        clearScreen();
         HapusPelanggan(pelangganList, index - 1);
         break;
       case '4':
